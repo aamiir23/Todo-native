@@ -1,0 +1,108 @@
+[
+    {
+      "id": 1,
+      "name": "Work 💻",
+      "todos": [
+        { "id": 1, "text": "Complete project report" },
+        { "id": 2, "text": "Attend team meeting" },
+        { "id": 3, "text": "Go for a run" },
+        { "id": 4, "text": "Read a book" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Home 🏠",
+      "todos": [
+        { "id": 5, "text": "Clean the house" },
+        { "id": 6, "text": "Cook dinner" },
+        { "id": 7, "text": "Learn to play guitar" },
+        { "id": 8, "text": "Paint a picture" }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Shopping",
+      "todos": [
+        { "id": 9, "text": "Buy groceries" },
+        { "id": 10, "text": "Buy new clothes" },
+        { "id": 11, "text": "Book flight tickets" },
+        { "id": 12, "text": "Pack luggage" }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Health",
+      "todos": [
+        { "id": 13, "text": "Go to the doctor" },
+        { "id": 14, "text": "Meditate" },
+        { "id": 15, "text": "Pay bills" },
+        { "id": 16, "text": "Save money" }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Education",
+      "todos": [
+        { "id": 17, "text": "Study for exam" },
+        { "id": 18, "text": "Attend online course" },
+        { "id": 19, "text": "Meet friends for coffee" },
+        { "id": 20, "text": "Attend party" }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Entertainment",
+      "todos": [
+        { "id": 21, "text": "Watch movie" },
+        { "id": 22, "text": "Listen to music" }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Relaxation",
+      "todos": [
+        { "id": 23, "text": "Take a bath" },
+        { "id": 24, "text": "Read a book" },
+        { "id": 25, "text": "Go to the gym" },
+        { "id": 26, "text": "Do yoga" },
+        { "id": 27, "text": "Update resume" },
+        { "id": 28, "text": "Network with professionals" }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Nature",
+      "todos": [
+        { "id": 29, "text": "Go hiking" },
+        { "id": 30, "text": "Visit a park" }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Technology",
+      "todos": [
+        { "id": 31, "text": "Learn to code" },
+        { "id": 32, "text": "Fix computer" },
+        { "id": 33, "text": "Write a story" },
+        { "id": 34, "text": "Learn to play an instrument" }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Volunteer",
+      "todos": [
+        { "id": 35, "text": "Volunteer at a local charity" },
+        { "id": 36, "text": "Help a neighbor" }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Gaming",
+      "todos": [
+        { "id": 37, "text": "Play video games" },
+        { "id": 38, "text": "Join online gaming community" },
+        { "id": 39, "text": "Build a bookshelf" },
+        { "id": 40, "text": "Repair furniture" }
+      ]
+    }
+  ]
