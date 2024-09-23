@@ -121,6 +121,9 @@ createGroupButtonText:{
     borderRadius:10,
     color: '#1d3557',
 
+  },
+  deleteButton: {
+    marginLeft:10,
   }
 });
 

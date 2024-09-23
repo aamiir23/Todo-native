@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TextInput, TouchableOpacity } from 'react-native';
+import { openDatabase } from 'react-native-sqlite-storage';
 import GroupList from './components/GroupList';
 import TodoList from './components/TodoList';
 import styles from './styles';
+
+const db = openDatabase({ name: 'myDatabase.db', location: 'default' });
 
 const App = () => {
   const [groups, setGroups] = useState([]);
@@ -10,10 +13,73 @@ const App = () => {
   const [newGroupName, setNewGroupName] = useState('');
 
   useEffect(() => {
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS groups (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)',
+        [],
+        () => {
+          console.log('Groups table created successfully');
+        },
+        error => {
+          console.error('Error creating groups table:', error);
+        }
+      );
+    });
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY AUTOINCREMENT, groupId INTEGER, text TEXT, completed INTEGER)',
+        [],
+        () => {
+          console.log('Todos table created successfully');
+        },
+        error => {
+          console.error('Error creating todos table:', error);
+        }
+      );
+    });
+
     console.log('groups loading');
     const groupsData = require('./groups.json'); // Assuming groups.json is in the same directory
+    loadGroupsFromDatabase();
     setGroups(groupsData);
   }, []);
+
+  const loadGroupsFromDatabase = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'SELECT * FROM groups',
+        [],
+        (tx, results) => {
+          setGroups(results.rows.raw());
+        },
+        error => {
+          console.error('Error loading groups:', error);
+        }
+      );
+    });
+  };
+
+  const saveGroupsToDatabase = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'DELETE FROM groups',
+        [],
+        () => {
+          groups.forEach(group => {
+            tx.executeSql(
+              'INSERT INTO groups (id, name) VALUES (?, ?)',
+              [group.id, group.name]
+            );
+          });
+        },
+        error => {
+          console.error('Error saving groups:', error);
+        }
+      );
+    });
+  };
+
 
   const handleSelectGroup = groupId => {
     setSelectedGroupId(groupId);
@@ -73,7 +139,7 @@ const App = () => {
 
   const handleDeleteGroup = groupId => {
     // Confirmation prompt before deletion (optional)
-    if (window.confirm('Are you sure you want to delete this group?')) {
+    // if (window.confirm('Are you sure you want to delete this group?')) {
       const updatedGroups = groups.filter(group => group.id !== groupId);
       setGroups(updatedGroups);
 
@@ -81,7 +147,7 @@ const App = () => {
       if (groupId === selectedGroupId) {
         setSelectedGroupId(null);
       }
-    }
+    // }
   };
 
   const handleBackPress = () => {
