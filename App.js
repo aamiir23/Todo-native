@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, TextInput, TouchableOpacity } from 'react-native';
 import GroupList from './components/GroupList';
 import TodoList from './components/TodoList';
 import styles from './styles';
@@ -7,11 +7,12 @@ import styles from './styles';
 const App = () => {
   const [groups, setGroups] = useState([]);
   const [selectedGroupId, setSelectedGroupId] = useState(null);
+  const [newGroupName, setNewGroupName] = useState('');
 
   useEffect(() => {
-    console.log('groups loading lwde');
+    console.log('groups loading');
     const groupsData = require('./groups.json'); // Assuming groups.json is in the same directory
-  setGroups(groupsData);
+    setGroups(groupsData);
   }, []);
 
   const handleSelectGroup = groupId => {
@@ -59,8 +60,29 @@ const App = () => {
     setGroups(updatedGroups);
   };
 
-  // const selectedGroup = groups.find(group => group.id === selectedGroupId);
+  const handleCreateGroup = () => {
+    if (newGroupName.trim() === '') {
+      return; // Prevent empty group names
+    }
 
+    const newGroupId = Date.now(); // Unique ID for the new group
+    setGroups([...groups, { id: newGroupId, name: newGroupName, todos: [] }]);
+    setSelectedGroupId(newGroupId); // Select the newly created group
+    setNewGroupName(''); // Clear the input field
+  };
+
+  const handleDeleteGroup = groupId => {
+    // Confirmation prompt before deletion (optional)
+    if (window.confirm('Are you sure you want to delete this group?')) {
+      const updatedGroups = groups.filter(group => group.id !== groupId);
+      setGroups(updatedGroups);
+
+      // Reset selection if the deleted group was selected
+      if (groupId === selectedGroupId) {
+        setSelectedGroupId(null);
+      }
+    }
+  };
 
   const handleBackPress = () => {
     setSelectedGroupId(null); // Clear selected group when going back
@@ -68,36 +90,53 @@ const App = () => {
 
   const selectedGroup = groups.find(group => group.id === selectedGroupId);
 
-
-
   return (
     <View style={styles.container2}>
-    <View style={styles.container}>
-      <Text style={styles.title}>Hi! I'm ToDo Ka 14</Text>
-      {selectedGroupId && (
-        <>
-          <Text
-  onPress={handleBackPress}
-  style={
-    styles.backButton
-  }
->BACK</Text>
-          <TodoList
-            style={styles.todoList}
-            todos={selectedGroup.todos}
-            onAddTodo={handleAddTodo}
-            onToggleComplete={handleToggleComplete}
-            onDelete={handleDeleteTodo}
-          />
+      <View style={styles.container}>
+        <Text style={styles.title}>GO Grab TODOs</Text>
+        {!selectedGroupId && ( // Display group list when no group is selected
+          <>
+              <View style={styles.createGroupInput}>
+                <TextInput
+                  style={styles.createGroupTextInput}
+                  placeholder="Enter group name" value={newGroupName}
+                  onChangeText={setNewGroupName}
+                  />
+                <TouchableOpacity onPress={handleCreateGroup} style={styles.createGroupButton}>
+                  <Text style={styles.createGroupButtonText}>Create Group</Text>
+                </TouchableOpacity>
+            </View> 
+            <Text
+            style={{ fontSize:24, textAlign:'center', width:'100%', fontWeight:600, marginTop:15 }}
+            > Groups </Text>
+          <GroupList
+            contentContainerStyle={{ justifyContent: 'center', alignItems: 'center' }}
+            style={styles.groupList}
+            groups={groups}
+            onSelectGroup={handleSelectGroup}
+            onDeleteGroup={handleDeleteGroup}
+            />
         </>
-      )}
-      {!selectedGroupId && 
-      <GroupList
-      contentContainerStyle={{ justifyContent: 'center', alignItems: 'center' }}
-      style={styles.groupList} groups={groups} onSelectGroup={handleSelectGroup} />}
-    </View>
-    </View>
-  );
-};
-
-export default App;
+        )}
+            {/* {!selectedGroupId && ( // Input field to create new group (when no group is selected)
+              )} */}
+        {selectedGroupId && ( // Display todo list and back button when a group is selected
+          <>
+            <Text onPress={handleBackPress} style={styles.backButton}>
+              Back
+            </Text>
+            <TodoList
+              style={styles.todoList}
+              todos={selectedGroup.todos}
+              onAddTodo={handleAddTodo}
+              onToggleComplete={handleToggleComplete}
+              onDelete={handleDeleteTodo}
+            />
+          </>
+        )}
+      </View>
+      </View>
+    );
+  };
+  
+  export default App;

@@ -9,6 +9,7 @@ const GroupItem = ({ group, onSelectGroup }) => {
       <Text
       style={styles.groupName}
       >{group.name}</Text>
+      
     </TouchableOpacity>
   );
 };

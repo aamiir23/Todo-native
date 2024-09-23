@@ -9,11 +9,11 @@ const TodoItem = ({ todo, onToggleComplete, onDelete }) => {
 
     <TouchableOpacity onPress={() => onToggleComplete(todo.id)}>
       <View  style={styles.todoItem}>
-        <Text style={{ textDecoration: todo.completed ? 'line-through' : 'none', fontSize:18, textAlign:'center' }}>
+        <Text style={{ textDecoration: todo.completed ? 'line-through' : 'line-through', fontSize:14, textAlign:'center', color:'#1d3557' }}>
           {todo.text}
         </Text>
         <TouchableOpacity onPress={() => onDelete(todo.id)}>
-          <Text style={{color:'#e63946', textAlign:'center'}}> ❌ </Text>
+          <Text style={{color:'#e63946', textAlign:'center', fontSize:12,}}> ❌ </Text>
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
