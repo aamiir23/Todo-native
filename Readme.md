@@ -110,8 +110,8 @@ Two tables are created in the SQLite database:
 - **Delete a Todo**: Remove a todo from the list.
 
 ![Image 1](https://i.postimg.cc/3JY7WzPk/Whats-App-Image-2024-09-24-at-20-49-15-67c59b70.jpg)
-![Image 2]([https://ibb.co/RCDSwdx](https://i.postimg.cc/k4TN80T7/Whats-App-Image-2024-09-24-at-20-49-15-b13901e5.jpg))
-![Image 3]([https://ibb.co/LN43cYk](https://i.postimg.cc/nLPBh4rL/Whats-App-Image-2024-09-24-at-20-49-15-f70470dc.jpg))
+![Image 2](https://i.postimg.cc/k4TN80T7/Whats-App-Image-2024-09-24-at-20-49-15-b13901e5.jpg)
+![Image 3](https://i.postimg.cc/nLPBh4rL/Whats-App-Image-2024-09-24-at-20-49-15-f70470dc.jpg)
 
 ## Troubleshooting
 
