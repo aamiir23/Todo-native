@@ -109,6 +109,10 @@ Two tables are created in the SQLite database:
 - **Toggle Todo Completion**: Mark a todo as complete/incomplete by clicking on it.
 - **Delete a Todo**: Remove a todo from the list.
 
+![Image 1]([https://ibb.co/K03VFJ6])
+![Image 2]([https://ibb.co/RCDSwdx])
+![Image 3]([https://ibb.co/LN43cYk])
+
 ## Troubleshooting
 
 If you encounter errors related to SQLite or database connection:
